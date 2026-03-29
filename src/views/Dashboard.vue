@@ -2,27 +2,27 @@
   <div class="dashboard">
     <h1>📋 Mes Tâches</h1>
 
-    <form @submit.prevent="creerTache">
-      <input v-model="nouvelleTache.title" placeholder="Titre" required />
-      <input v-model="nouvelleTache.description" placeholder="Description" />
-      <select v-model="nouvelleTache.priorite">
+    <form @submit.prevent="createTask">
+      <input v-model="newTask.title" placeholder="Titre" required />
+      <input v-model="newTask.description" placeholder="Description" />
+      <select v-model="newTask.priorite">
         <option value="BASSE">Basse</option>
         <option value="MOYENNE">Moyenne</option>
         <option value="HAUTE">Haute</option>
       </select>
-      <input v-model="nouvelleTache.dueDate" type="date" />
+      <input v-model="newTask.dueDate" type="date" />
       <button type="submit">Ajouter</button>
     </form>
 
-    <div class="taches">
-      <div v-for="tache in taches" :key="tache.id" class="tache">
-        <div class="tache-info">
-          <h3>{{ tache.title }}</h3>
-          <p>{{ tache.description }}</p>
-          <span :class="'priorite ' + tache.priorite">{{ tache.priorite }}</span>
-          <span class="date" v-if="tache.dueDate">📅 {{ tache.dueDate }}</span>
+    <div class="task-list">
+      <div v-for="task in tasks" :key="task.id" class="task">
+        <div class="task-info">
+          <h3>{{ task.title }}</h3>
+          <p>{{ task.description }}</p>
+          <span :class="'priorite ' + task.priorite">{{ task.priorite }}</span>
+          <span class="date" v-if="task.dueDate">📅 {{ task.dueDate }}</span>
         </div>
-        <button @click="supprimerTache(tache.id)">🗑️</button>
+        <button @click="deleteTask(task.id)">🗑️</button>
       </div>
     </div>
   </div>
@@ -34,31 +34,31 @@ import axios from 'axios'
 
 const API = 'https://task-run.onrender.com'
 
-const taches = ref([])
-const nouvelleTache = ref({
+const tasks = ref([])
+const newTask = ref({
   title: '',
   description: '',
   priorite: 'MOYENNE',
   dueDate: ''
 })
 
-const chargerTaches = async () => {
+const TasksCharge = async () => {
   const response = await axios.get(`${API}/tasks`)
-  taches.value = response.data
+  tasks.value = response.data
 }
 
-const creerTache = async () => {
-  await axios.post(`${API}/tasks`, nouvelleTache.value)
-  nouvelleTache.value = { title: '', description: '', priorite: 'MOYENNE', dueDate: '' }
-  chargerTaches()
+const createTask = async () => {
+  await axios.post(`${API}/tasks`, newTask.value)
+  newTask.value = { title: '', description: '', priorite: 'MOYENNE', dueDate: '' }
+  TasksCharge()
 }
 
-const supprimerTache = async (id) => {
+const deleteTask = async (id) => {
   await axios.delete(`${API}/tasks/${id}`)
-  chargerTaches()
+  TasksCharge()
 }
 
-onMounted(chargerTaches)
+onMounted(TasksCharge)
 </script>
 
 <style scoped>
