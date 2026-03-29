@@ -1,54 +1,178 @@
-.dashboard {
-  padding: 20px;
-}
-
-form {
+.page-header {
   display: flex;
-  gap: 10px;
-  margin-bottom: 20px;
-  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
 }
 
-input, select {
-  padding: 8px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+.page-header h1 { font-size: 28px; }
+
+.task-count {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 14px;
+  color: var(--text-secondary);
 }
 
-button {
-  padding: 8px 16px;
-  background: #42b883;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
+.add-task-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 32px;
 }
 
-.task-list {
+.add-task-card h2 {
+  font-size: 16px;
+  color: var(--accent);
+  margin-bottom: 16px;
+}
+
+.task-form {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
 }
 
-.task {
+.task-form input, .task-form select {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 14px;
+  color: var(--text-primary);
+  font-size: 14px;
+  outline: none;
+  transition: border 0.2s;
+}
+
+.task-form input:focus, .task-form select:focus {
+  border-color: var(--accent);
+}
+
+.form-row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.form-row select, .form-row input { flex: 1; }
+
+.btn-primary {
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 24px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  white-space: nowrap;
+}
+
+.btn-primary:hover { background: var(--accent-hover); }
+
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 60px;
+  color: var(--text-secondary);
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--border);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 60px;
+  color: var(--text-secondary);
+}
+
+.empty-state span { font-size: 48px; }
+.empty-state p { font-size: 18px; color: var(--text-primary); }
+
+.taches-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.tache-card {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px;
-  border: 1px solid #ddd;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px 20px;
+  transition: border-color 0.2s;
+}
+
+.tache-card:hover { border-color: var(--accent); }
+
+.tache-left { display: flex; flex-direction: column; gap: 6px; }
+
+.tache-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.priorite-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.priorite-dot.priorite-HAUTE { background: var(--haute); }
+.priorite-dot.priorite-MOYENNE { background: var(--moyenne); }
+.priorite-dot.priorite-BASSE { background: var(--basse); }
+
+.tache-desc { color: var(--text-secondary); font-size: 14px; }
+
+.tache-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.badge-priorite {
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.badge-priorite.HAUTE { background: rgba(255,71,87,0.15); color: var(--haute); }
+.badge-priorite.MOYENNE { background: rgba(255,165,2,0.15); color: var(--moyenne); }
+.badge-priorite.BASSE { background: rgba(46,213,115,0.15); color: var(--basse); }
+
+.due-date, .statut { font-size: 12px; color: var(--text-secondary); }
+
+.btn-danger {
+  background: rgba(255,71,87,0.1);
+  border: 1px solid rgba(255,71,87,0.3);
+  color: var(--danger);
   border-radius: 8px;
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: all 0.2s;
 }
 
-.priorite {
-  padding: 4px 8px;
-  border-radius: 4px;
-  font-size: 12px;
-  font-weight: bold;
-  margin-right: 10px;
-}
-
-.priorite.HAUTE { background: #ff4757; color: white; }
-.priorite.MOYENNE { background: #ffa502; color: white; }
-.priorite.BASSE { background: #2ed573; color: white; }
-
-.date { font-size: 12px; color: #888; }
+.btn-danger:hover { background: rgba(255,71,87,0.2); }
