@@ -24,13 +24,13 @@ button {
   cursor: pointer;
 }
 
-.taches {
+.task-list {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-.tache {
+.task {
   display: flex;
   justify-content: space-between;
   align-items: center;
