@@ -1,44 +1,42 @@
-# task-run-front
+# Task Run Front
 
-This template should help get you started developing with Vue 3 in Vite.
+> Interface frontend du projet Task Run, application de gestion de tâches gamifiée construite avec Vue.js.
 
-## Recommended IDE Setup
+## 🔗 Projet lié
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+API backend : [task-run](https://github.com/tonnom/task-run) — déployée sur https://task-run.onrender.com
 
-## Recommended Browser Setup
+## 🛠 Stack technique
 
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
+- Vue.js 3
+- Vue Router
+- Axios
+- Vite
 
-## Customize configuration
+## 🚀 Fonctionnalités
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+- Dashboard de gestion des tâches avec priorités et dates d'échéance
+- Profil utilisateur avec XP, niveau, streak et barre de progression
+- Page badges avec états débloqué/verrouillé
+- Dark mode complet
+- Spinner de chargement sur toutes les pages
 
-## Project Setup
+## 📸 Pages
 
-```sh
+| Page | Description |
+|------|-------------|
+| `/` | Dashboard — liste et création de tâches |
+| `/profil` | Profil — XP, niveau, streak, badges débloqués |
+| `/badges` | Badges — tous les badges avec conditions |
+
+## ▶️ Lancer en local
+```bash
+git clone https://github.com/tonnom/task-run-front.git
+cd task-run-front
 npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
 npm run dev
 ```
 
-### Compile and Minify for Production
+## 🌐 Démo
 
-```sh
-npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+Frontend disponible à : https://task-run-front.onrender.com
