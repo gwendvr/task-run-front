@@ -65,9 +65,8 @@
 
 <script setup>
 import { ref, computed, onMounted } from 'vue'
-import axios from 'axios'
+import api from '../api'
 
-const API = 'https://task-run.onrender.com'
 const user = ref(null)
 const charge = ref(true)
 
@@ -84,7 +83,7 @@ const xpProgression = computed(() => {
 const UserCharge = async () => {
   charge.value = true
   try {
-    const response = await axios.get(`${API}/users`)
+    const response = await api.get('/users')
     if (response.data.length > 0) user.value = response.data[0]
   } finally {
     charge.value = false

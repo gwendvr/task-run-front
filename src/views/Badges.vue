@@ -40,9 +40,8 @@
 
 <script setup>
 import { ref, computed, onMounted } from 'vue'
-import axios from 'axios'
+import api from '../api'
 
-const API = 'https://task-run.onrender.com'
 const badges = ref([])
 const user = ref(null)
 const charge = ref(true)
@@ -60,8 +59,8 @@ const charger = async () => {
   charge.value = true
   try {
     const [badgesRes, utilisateursRes] = await Promise.all([
-      axios.get(`${API}/badges`),
-      axios.get(`${API}/users`)
+      api.get('/badges'),
+      api.get('/users')
     ])
     badges.value = badgesRes.data
     if (utilisateursRes.data.length > 0) user.value = utilisateursRes.data[0]

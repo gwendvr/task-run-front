@@ -57,9 +57,8 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
-import axios from 'axios'
+import api from '../api'
 
-const API = 'https://task-run.onrender.com'
 const tasks = ref([])
 const charge = ref(true)
 const newTask = ref({ title: '', description: '', priorite: 'MOYENNE', dueDate: '' })
@@ -67,7 +66,7 @@ const newTask = ref({ title: '', description: '', priorite: 'MOYENNE', dueDate: 
 const taskCharge = async () => {
   charge.value = true
   try {
-    const response = await axios.get(`${API}/tasks`)
+    const response = await api.get('/tasks')
     tasks.value = response.data
   } finally {
     charge.value = false
@@ -75,13 +74,13 @@ const taskCharge = async () => {
 }
 
 const createTask = async () => {
-  await axios.post(`${API}/tasks`, newTask.value)
+  await api.post('/tasks', newTask.value)
   newTask.value = { title: '', description: '', priorite: 'MOYENNE', dueDate: '' }
   taskCharge()
 }
 
 const deleteTask = async (id) => {
-  await axios.delete(`${API}/tasks/${id}`)
+  await api.delete(`/tasks/${id}`)
   taskCharge()
 }
 
